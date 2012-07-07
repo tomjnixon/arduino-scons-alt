@@ -1,0 +1,6 @@
+env = Environment(tools=["default", "arduino"])
+env.ConfigureBoard("atmega328")
+core = env.ArduinoCore()
+
+sketch = env.Sketch("blink", ["blink.cpp", core])
+env.Upload(sketch)

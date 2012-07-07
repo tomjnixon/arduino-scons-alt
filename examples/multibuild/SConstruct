@@ -1,0 +1,20 @@
+env = Environment(tools=["default", "arduino"])
+env.ConfigureBoard("atmega328")
+core = env.ArduinoCore()
+
+env.Append(CCFLAGS="-DDELAY=$DELAY")
+
+configs = [
+    ("slow", 1000, "/dev/ttyUSB0"),
+    ("fast", 100, "/dev/ttyUSB1")]
+
+for name, delay, port in configs:
+    try:
+        cfg_env = env.Clone(BUILD_NAME=name, UPLOAD_PORT=port, DELAY=delay)
+        cfg_env.VariantDir("build/$BUILD_NAME", ".")
+        sketch = cfg_env.Sketch(name, ["build/$BUILD_NAME/blink.cpp", core])
+        cfg_env.Upload(sketch, "upload_$BUILD_NAME")
+    except Exception, e:
+        print e
+
+env.UploadAll()
