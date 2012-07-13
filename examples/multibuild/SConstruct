@@ -9,12 +9,9 @@ configs = [
     ("fast", 100, "/dev/ttyUSB1")]
 
 for name, delay, port in configs:
-    try:
-        cfg_env = env.Clone(BUILD_NAME=name, UPLOAD_PORT=port, DELAY=delay)
-        cfg_env.VariantDir("build/$BUILD_NAME", ".")
-        sketch = cfg_env.Sketch(name, ["build/$BUILD_NAME/blink.cpp", core])
-        cfg_env.Upload(sketch, "upload_$BUILD_NAME")
-    except Exception, e:
-        print e
+    cfg_env = env.Clone(BUILD_NAME=name, UPLOAD_PORT=port, DELAY=delay)
+    cfg_env.VariantDir("build/$BUILD_NAME", ".")
+    sketch = cfg_env.Sketch("${BUILD_NAME}", ["$BUILD_DIR/$BUILD_NAME/blink.cpp", core])
+    cfg_env.Upload(sketch, "upload_$BUILD_NAME")
 
 env.UploadAll()
