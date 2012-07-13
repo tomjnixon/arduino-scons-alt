@@ -79,61 +79,73 @@ Add an alias which defers to all upload targets in `$ALL_UPLOADS`, which is upda
 Variables
 ---------
 
-### BOARD
+#### BOARD
 
 The name of the board passed to `env.ConfigureBoard`.
 
-### F_CPU
+#### F_CPU
 
 CPU frequency in Hz.
 
-### MCU
+#### MCU
 
 MCU string passed to gcc and avrdude.
 
-### VARIANT
+#### VARIANT
 
 Board variant.
 
-### VARIANT_DIR
+#### VARIANT_DIR
 
 Directory for the above variant.
 
-### CORE
+#### CORE
 
 Core name for this board; always "arduino".
 
-### CORE_DIR
+#### CORE_DIR
 
 Directory of the core library for this board.
 
-### BUILD_DIR
+#### BUILD_DIR
 
 The directory to build in, by default `build/$BOARD`.
 
-### AVRDUDE
+#### AVRDUDE
 
 The avrdude binary to use.
 
-### AVRDUDEFLAGS
+#### AVRDUDEFLAGS
 
 Flags to pass to AVRDUDE.
 
-### AVRDUDECMD
+#### AVRDUDECMD
 
 The full avrdude command line.
 
-### UPLOAD_PROTOCOL
+#### UPLOAD_PROTOCOL
 
 The upload protocol to use with avrdude.
 
-### UPLOAD_SPEED
+#### UPLOAD_SPEED
 
 Upload speed for this board.
 
-### UPLOAD_PORT
+#### UPLOAD_PORT
 
 USB port to upload to, by default "/dev/ttyUSB0".
+
+### Standard Variables
+
+The following variables have their standard meanings, and are set by `env.ConfigureBoard`:
+
+- [CC](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CC)
+- [CCFLAGS](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CCFLAGS)
+- [CFLAGS](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CFLAGS)
+- [CPPPATH](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CPPPATH)
+- [CXX](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CXX)
+- [LD](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-LD)
+- [LINKFLAGS](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-LINKFLAGS)
 
 About
 =====
