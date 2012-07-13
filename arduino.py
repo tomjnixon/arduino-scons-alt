@@ -44,6 +44,7 @@ def generate(env):
             VARIANT_DIR = "$ARDUINO_HOME/hardware/arduino/variants/$VARIANT",
             CORE        = boards[(board, "build", "core")],
             CORE_DIR    = "$ARDUINO_HOME/hardware/arduino/cores/$CORE",
+            BUILD_DIR   = "build/$BOARD",
             AVRDUDE     = "avrdude",
             AVRDUDEFLAGS = "-V -F -c $UPLOAD_PROTOCOL -b $UPLOAD_SPEED "
                            "-p $MCU -P $UPLOAD_PORT".split(),
@@ -65,17 +66,17 @@ def generate(env):
                     OBJCOPY = "avr-objcopy", AVRDUDE = "avrdude")
         
         # Set up the variant dir for this board.
-        env.VariantDir("build/$BOARD/variant", "$VARIANT_DIR")
-        env.Append(CPPPATH = ["build/$BOARD/variant"])
+        env.VariantDir("$BUILD_DIR/variant", "$VARIANT_DIR")
+        env.Append(CPPPATH = ["$BUILD_DIR/variant"])
         
         return env
     
     @env.AddMethod
     def ArduinoCore(env):
         """Build the arduino core library."""
-        env.VariantDir("build/$BOARD/core", "$CORE_DIR")
-        env.Append(CPPPATH = ["build/$BOARD/core"])
-        return env.Clone().Library("build/$BOARD/core", cxxfiles(env, "build/$BOARD/core"))
+        env.VariantDir("$BUILD_DIR/core", "$CORE_DIR")
+        env.Append(CPPPATH = ["$BUILD_DIR/core"])
+        return env.Clone().Library("$BUILD_DIR/core", cxxfiles(env, "$BUILD_DIR/core"))
     
     def cxxfiles(env, path):
         """Get all c and cpp files in path."""
@@ -87,15 +88,21 @@ def generate(env):
         arduino library. This adds the path to the inclide path, and builds all c
         and cpp files from path and path/utility into a library.
         """
-        full_name = join("build/$BOARD", name)
+        full_name = join("$BUILD_DIR", name)
         path = path or join(env.subst("$ARDUINO_HOME/libraries"), name)
         env.VariantDir(full_name, path)
         env.Append(CPPPATH = full_name)
         
-        # Only add the utility directory to the include path while building this library.
+        # Only add the utility directory to the include path while building
+        # this library.
         lib_env = env.Clone()
         lib_env.Append(CPPPATH = join(full_name, "utility"))
         return lib_env.Library(full_name, cxxfiles(env, full_name))
+    
+    # Use objcopy to build a hex file from an elf file.
+    hex_builder = Builder(action="$OBJCOPY -O ihex -R .eeprom $SOURCES $TARGET",
+                          suffix=".hex")
+    env.Append(BUILDERS = dict(Hex = hex_builder))
     
     @env.AddMethod
     def Sketch(env, name, sources):
@@ -138,8 +145,3 @@ def generate(env):
         """Add an alias that runs all previously defined upload targets with a
         given name."""
         return env.Alias(name, env["ALL_UPLOADS"])
-    
-    # Use objcopy to build a hex file from an elf file.
-    hex_builder = Builder(action="$OBJCOPY -O ihex -R .eeprom $SOURCES $TARGET",
-                          suffix=".hex")
-    env.Append(BUILDERS = dict(Hex = hex_builder))
