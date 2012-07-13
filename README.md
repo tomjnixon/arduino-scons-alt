@@ -70,7 +70,7 @@ Uses.`env.Program` and `env.Hex` to compile a list of sources (either source fil
 
 ### env.Upload(hex_file, name="upload")
 
-Adds an alias (named upload by default) which uploads the given hex file to an arduino connected to $UPLOAD_PORT. Strange things happen if this is called multiple times with the same name; either add an alias which defers to multiple upload targets, or use `env.UploadAll()`.
+Adds an alias (named upload by default) which uploads the given hex file to an arduino connected to `$UPLOAD_PORT`. Strange things happen if this is called multiple times with the same name; either add an alias which defers to multiple upload targets, or use `env.UploadAll()`.
 
 ### env.UploadAll(name="upload")
 
