@@ -144,7 +144,6 @@ The following variables have their standard meanings, and are set by `env.Config
 - [CFLAGS](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CFLAGS)
 - [CPPPATH](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CPPPATH)
 - [CXX](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-CXX)
-- [LD](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-LD)
 - [LINKFLAGS](http://www.scons.org/doc/production/HTML/scons-user/a4916.html#cv-LINKFLAGS)
 
 About

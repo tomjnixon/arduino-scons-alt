@@ -62,7 +62,7 @@ def generate(env):
             CFLAGS = "-std=gnu99".split())
         
         # Set binaries to use.
-        env.Replace(CC = "avr-gcc", CXX = "avr-g++", LD = "avr-ld",
+        env.Replace(CC = "avr-gcc", CXX = "avr-g++",
                     OBJCOPY = "avr-objcopy", AVRDUDE = "avrdude")
         
         # Set up the variant dir for this board.
