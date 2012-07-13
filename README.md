@@ -5,7 +5,7 @@ An alternative way of building arduino sketches with scons.
 
 This project is designed to be:
 
-- Flexible. Custom libraries? Multiple builds for different boards uploaded to the correct ports in one script? No problem.
+- Flexible. Custom libraries? Multiple builds for different boards uploaded to the correct ports from one script? No problem.
 - Easy to understand. No source munging. No automatic library detection. No magic.
 
 Installation
@@ -32,12 +32,14 @@ This script does not do any munging of your source files, so you may need reorde
 
 A script to compile and upload a basic sketch might look something like this:
 
-    env = Environment(tools=["default", "arduino"])
-    env.ConfigureBoard("atmega328")
-    core = env.ArduinoCore()
-    
-    sketch = env.Sketch("blink", ["blink.cpp", core])
-    env.Upload(sketch)
+```python
+env = Environment(tools=["default", "arduino"])
+env.ConfigureBoard("atmega328")
+core = env.ArduinoCore()
+
+sketch = env.Sketch("blink", ["blink.cpp", core])
+env.Upload(sketch)
+```
 
 See the `examples` directory  for more examples.
 
@@ -107,7 +109,7 @@ Directory of the core library for this board.
 
 ### BUILD_DIR
 
-The directory to build in, by default "build/$BOARD".
+The directory to build in, by default `build/$BOARD`.
 
 ### AVRDUDE
 
