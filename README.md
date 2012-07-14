@@ -5,16 +5,19 @@ An alternative way of building arduino sketches with scons.
 
 This project is designed to be:
 
-- Flexible. Custom libraries? Multiple builds for different boards uploaded to the correct ports from one script? No problem.
-- Easy to understand. No source munging. No automatic library detection. No magic.
+- Flexible. Code generation? Multiple builds for different boards uploaded to
+  the correct ports from one script? No problem.
+- Easy to understand. No source munging. No automatic library detection. No
+  magic.
 
 Installation
 ------------
 
 This can either be installed system-wide, or per-project. Either way,
-`arduino.py` should be installed in `$SITE_SCONS/site_tools`, where
-`$SITE_SCONS` is one of the directories listed in the scons man page under the
-`--site-dir` flag.
+`arduino.py` should be installed into `$SITE_SCONS/site_tools`, where
+`$SITE_SCONS` is one of the directories listed in the
+[scons man page](http://www.scons.org/doc/HTML/scons-man.html) under
+the `--site-dir` flag.
 
 On Linux the following directories are appropriate:
 
@@ -28,7 +31,10 @@ Installing into `$HOME/.scons/site_scons` can be accomplished by running
 Usage
 -----
 
-This script does not do any munging of your source files, so you may need reorder your functions (or add function prototypes), and add `#include <Arduino.h>`. Your sketch should be in a `cpp` file, rather than an `ino` file.
+This script does not do any munging of your source files, so you may need
+reorder your functions (or add function prototypes), and add
+`#include <Arduino.h>`. Your sketch should be in a `.cpp` file, rather than an
+`.ino` file.
 
 A script to compile and upload a basic sketch might look something like this:
 
@@ -50,7 +56,9 @@ Installing the tool into an environment gives it the following methods:
 
 ### env.ConfigureBoard(board_name)
 
-This sets defaults for a whole bunch of environment variables (described below), based on the board name. The supported boards and their settings can be found in `$ARDUINO_HOME/hardware/arduino/boards.txt`.
+This sets defaults for a whole bunch of environment variables (described
+below), based on the board name. The supported boards and their settings can be
+found in `$ARDUINO_HOME/hardware/arduino/boards.txt`.
 
 ### env.ArduinoCore()
 
@@ -58,23 +66,30 @@ Compile the arduino core library into a static library.
 
 ### env.ArduinoLibrary(name)
 
-Compile a standard arduino library into a static library, and add it to the include path.
+Compile a standard arduino library into a static library, and add it to the
+include path.
 
 ### env.ArduinoLibrary(name, path)
 
-Compile an arduino library in a given directory into a static library, and add it to the include path.
+Compile an arduino library in a given directory into a static library, and add
+it to the include path.
 
 ### env.Sketch(name, sources)
 
-Uses.`env.Program` and `env.Hex` to compile a list of sources (either source files or libraries) into a hex file (named name.hex) for uploading.
+Uses.`env.Program` and `env.Hex` to compile a list of sources (either source
+files or libraries) into a hex file (named name.hex) for uploading.
 
 ### env.Upload(hex_file, name="upload")
 
-Adds an alias (named upload by default) which uploads the given hex file to an arduino connected to `$UPLOAD_PORT`. Strange things happen if this is called multiple times with the same name; either add an alias which defers to multiple upload targets, or use `env.UploadAll()`.
+Adds an alias (named upload by default) which uploads the given hex file to an
+arduino connected to `$UPLOAD_PORT`. Strange things happen if this is called
+multiple times with the same name; either add an alias which defers to multiple
+upload targets, or use `env.UploadAll()`.
 
 ### env.UploadAll(name="upload")
 
-Add an alias which defers to all upload targets in `$ALL_UPLOADS`, which is updated by `env.Upload`.
+Add an alias which defers to all upload targets in `$ALL_UPLOADS`, which is
+updated by `env.Upload`.
 
 Variables
 ---------
