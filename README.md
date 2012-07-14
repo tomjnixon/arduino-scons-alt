@@ -97,7 +97,7 @@ Variables
 #### ARDUINO_HOME
 
 The root of the arduino install. By default this is taken from the environment
-variable of the same name. If this is not found `/usr/share/arduino` is used.
+variable of the same name; if this is not found, `/usr/share/arduino` is used.
 
 #### BOARD
 
