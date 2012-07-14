@@ -117,7 +117,7 @@ The avrdude binary to use.
 
 #### AVRDUDEFLAGS
 
-Flags to pass to AVRDUDE.
+Flags to pass to avrdude.
 
 #### AVRDUDECMD
 
@@ -133,7 +133,7 @@ Upload speed for this board.
 
 #### UPLOAD_PORT
 
-USB port to upload to, by default "/dev/ttyUSB0".
+USB port to upload to, by default `/dev/ttyUSB0`.
 
 ### Standard Variables
 
