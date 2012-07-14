@@ -9,7 +9,7 @@ The simplest possible build.
 multibuild
 ----------
 
-Multiple builds with diferent flags uploaded to diferent arduinos. Use `-j2` to
+Multiple builds with different flags uploaded to different arduinos. Use `-j2` to
 upload in parallel.
 
 libraries
