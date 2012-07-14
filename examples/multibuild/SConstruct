@@ -10,7 +10,7 @@ configs = [
 
 for name, delay, port in configs:
     cfg_env = env.Clone(BUILD_NAME=name, UPLOAD_PORT=port, DELAY=delay)
-    cfg_env.VariantDir("build/$BUILD_NAME", ".")
+    cfg_env.VariantDir("$BUILD_DIR/$BUILD_NAME", ".")
     sketch = cfg_env.Sketch("${BUILD_NAME}", ["$BUILD_DIR/$BUILD_NAME/blink.cpp", core])
     cfg_env.Upload(sketch, "upload_$BUILD_NAME")
 
