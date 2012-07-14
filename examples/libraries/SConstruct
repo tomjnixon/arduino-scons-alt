@@ -1,0 +1,9 @@
+env = Environment(tools=["default", "arduino"])
+env.ConfigureBoard("atmega328")
+core = env.ArduinoCore()
+
+test_lib = env.ArduinoLibrary("test", "../test_library")
+serial_lib = env.ArduinoLibrary("SoftwareSerial")
+
+sketch = env.Sketch("hello", ["hello.cpp", serial_lib, test_lib, core])
+env.Upload(sketch)
