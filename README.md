@@ -79,6 +79,12 @@ Add an alias which defers to all upload targets in `$ALL_UPLOADS`, which is upda
 Variables
 ---------
 
+#### ARDUINO_HOME
+
+The root of the arduino install. By default this is taken from the environment
+variable of the same name. If this is not found it falls back to
+`/usr/share/arduino`.
+
 #### BOARD
 
 The name of the board passed to `env.ConfigureBoard`.
