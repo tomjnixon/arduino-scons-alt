@@ -1,7 +1,7 @@
-Arduino Scons (alternative)
+Arduino SCons (alternative)
 ===========================
 
-An alternative way of building arduino sketches with scons.
+An alternative way of building arduino sketches with SCons.
 
 This project is designed to be:
 
@@ -16,7 +16,7 @@ Installation
 This can either be installed system-wide, or per-project. Either way,
 `arduino.py` should be installed into `$SITE_SCONS/site_tools`, where
 `$SITE_SCONS` is one of the directories listed in the
-[scons man page](http://www.scons.org/doc/HTML/scons-man.html) under
+[SCons man page](http://www.scons.org/doc/HTML/scons-man.html) under
 the `--site-dir` flag.
 
 On Linux the following directories are appropriate:
