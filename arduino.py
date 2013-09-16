@@ -80,7 +80,7 @@ def generate(env):
     
     def cxxfiles(env, path):
         """Get all c and cpp files in path."""
-        return env.Glob(join(path, "**.c")) + env.Glob(join(path, "**.cpp"))
+        return env.Glob(join(path, "*.c")) + env.Glob(join(path, "*.cpp"))
     
     @env.AddMethod
     def ArduinoLibrary(env, name, path=None):
@@ -97,7 +97,8 @@ def generate(env):
         # this library.
         lib_env = env.Clone()
         lib_env.Append(CPPPATH = join(full_name, "utility"))
-        return lib_env.Library(full_name, cxxfiles(env, full_name))
+        sources = cxxfiles(env, full_name) + cxxfiles(env, join(full_name, "utility"))
+        return lib_env.Library(full_name, sources)
     
     # Use objcopy to build a hex file from an elf file.
     hex_builder = Builder(action="$OBJCOPY -O ihex -R .eeprom $SOURCES $TARGET",
