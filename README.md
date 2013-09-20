@@ -26,7 +26,7 @@ On Linux the following directories are appropriate:
 - `./site_scons`
 
 Installing into `$HOME/.scons/site_scons` can be accomplished by running
-`./install.py`.
+`./install.sh`.
 
 Usage
 -----
