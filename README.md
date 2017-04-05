@@ -1,3 +1,14 @@
+ABANDONED PROJECT
+=================
+
+This was good while it lasted, but keeping this up to date with changes to the
+Arduino distribution is not something that I want to put effort into.
+
+[PlatformIO](http://platformio.org/) seems to be the current best replacement
+for this project.
+
+---
+
 Arduino SCons (alternative)
 ===========================
 
